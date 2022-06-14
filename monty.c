@@ -6,6 +6,7 @@ monty_t monty;
  * check_args - check the arguments for monty
  * @argc: argument count
  * @argv: argument vector
+ * Return: FILE stream
  */
 FILE *check_args(int argc, char *argv[])
 {
@@ -36,12 +37,12 @@ void init_monty(FILE *fd)
 	monty.fd = fd;
 	monty.line_number = 0;
 	monty.stack = NULL;
-	monty.argv = NULL;
+	monty.arg = NULL;
 }
 
 /**
  * main - the main operations take place
- * 
+ *
  * @argc: number of argument
  * @argv: elements of argument
  * Return: 0 if succesful else another number if not
@@ -60,18 +61,23 @@ int main(int argc, char *argv[])
 	while ((flag = getline(&line, &len, fd) != -1))
 	{
 		opcode = strtok(line, DELIMITER);
-		if (!opcode) {
+		if (!opcode)
+		{
 			dprintf(STDERR_FILENO, "No opcode");
 			exit(EXIT_FAILURE);
 		}
-		printf("opcode: [%s]", opcode);
 		arg = strtok(NULL, DELIMITER);
 		if (arg)
-			printf(" arg: [%s]", arg);
-		printf("\n");
-		monty.arg = arg;
-		// f = get_ops()
-		// f(); // if f is not NULL
+			monty.arg = arg;
+	
+		f = get_ops(opcode);
+		if (!f)
+		{
+			dprintf(STDERR_FILENO, "L%d: unknown instruction %s", monty.line_number, opcode);
+			exit(EXIT_FAILURE);
+		}
+		f(&monty.stack, monty.line_number);
+		monty.line_number++;
 	}
 
 	return (EXIT_SUCCESS);
