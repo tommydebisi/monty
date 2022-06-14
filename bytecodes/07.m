@@ -3,7 +3,7 @@ push 2
 push 3
 pall
 pop
-pall
+ pall
 pop
 pall
 pop
