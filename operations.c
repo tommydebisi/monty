@@ -108,7 +108,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *future;
 
 	future = *stack;
-	if (!future || !future->next || !future->next->next)
+	if (!future || !future->next)
 	{
 		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
@@ -116,7 +116,8 @@ void swap(stack_t **stack, unsigned int line_number)
 
 	future->prev = future->next;
 	future->next->prev = NULL;
-	future->next->next->prev = future;
+	if (future->next->next)
+		future->next->next->prev = future;
 	future->next = future->next->next;
 	future->prev->next = future;
 	*stack = future->prev;
