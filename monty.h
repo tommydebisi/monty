@@ -48,7 +48,7 @@ typedef struct monty_s
 {
 	stack_t *stack;
 	unsigned int line_number;
-	char **argv;
+	char *arg;
 	FILE *fd;
 } monty_t;
 
@@ -63,8 +63,9 @@ void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 
+void (*get_ops(char *opcode))(stack_t **stack, unsigned int line_number);
+
 /* string functions */
 int _isdigit(char *str);
 
-int readline(fd);
 #endif /* _MONTY_H_ */
