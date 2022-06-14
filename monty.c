@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
 		if (arg)
 			printf(" arg: [%s]", arg);
 		printf("\n");
+		monty.arg = arg;
 		// f = get_ops()
 		// f(); // if f is not NULL
 	}
