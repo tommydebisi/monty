@@ -35,7 +35,8 @@ void init_monty(FILE *fd)
 {
 	monty.fd = fd;
 	monty.line_number = 0;
-	monty.top = NULL;
+	monty.stack = NULL;
+	monty.argv = NULL;
 }
 
 /**
@@ -50,12 +51,27 @@ int main(int argc, char *argv[])
 	FILE *fd;
 	ssize_t flag;
 	size_t len = 0;
-	char *line;
+	char *line, *opcode, *arg;
+	void (*f)(stack_t **stack, unsigned int line_number);
+	const char DELIMITER[4] = " \t\n";
 
 	fd = check_args(argc, argv);
 	init_monty(fd);
 	while ((flag = getline(&line, &len, fd) != -1))
 	{
-		// handle line
+		opcode = strtok(line, DELIMITER);
+		if (!opcode) {
+			dprintf(STDERR_FILENO, "No opcode");
+			exit(EXIT_FAILURE);
+		}
+		printf("opcode: [%s]", opcode);
+		arg = strtok(NULL, DELIMITER);
+		if (arg)
+			printf(" arg: [%s]", arg);
+		printf("\n");
+		// f = get_ops()
+		// f(); // if f is not NULL
 	}
+
+	return (EXIT_SUCCESS);
 }
