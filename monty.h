@@ -45,12 +45,12 @@ typedef struct instruction_s
  */
 typedef struct monty_s
 {
-	stack_t stack;
+	stack_t *top;
 	unsigned int line_number;
-	FILE fd;
+	FILE *fd;
 } monty_t;
 
 extern monty_t monty;
 
-int readline(fd);
+int readline(int fd);
 #endif /* _MONTY_H_ */
