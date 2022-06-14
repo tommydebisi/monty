@@ -2,11 +2,11 @@
 
 /**
  * push - adds node to top of stack
- * 
+ *
  * @stack: first node in the list
- * @line_number: line  currently on
+ * @nline: line  currently on
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int nline)
 {
 	stack_t *new_node;
 	int value;
@@ -14,11 +14,11 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!monty.arg || !_isdigit(monty.arg))
 	{
-		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", nline);
 		exit(EXIT_FAILURE);
 	}
 	value = atoi(monty.arg);
-	
+
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 		exit(EXIT_FAILURE);
@@ -42,12 +42,12 @@ void push(stack_t **stack, unsigned int line_number)
  * pall - print all value of list
  *
  * @stack: first node in the list
- * @line_number: line  currently on
+ * @nline: line  currently on
  */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, unsigned int nline)
 {
 	stack_t *future;
-	(void)line_number;
+	(void)nline;
 
 	future = *stack;
 	while (future)
@@ -61,13 +61,13 @@ void pall(stack_t **stack, unsigned int line_number)
  * pint - prints the value at the top of stack
  *
  * @stack: first node in the list
- * @line_number: line  currently on
+ * @nline: line  currently on
  */
-void pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int nline)
 {
 	if (!*stack)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pint, stack empty\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't pint, stack empty\n", nline);
 		exit(EXIT_FAILURE);
 	}
 
@@ -78,14 +78,15 @@ void pint(stack_t **stack, unsigned int line_number)
  * pop - removes the top element of the stack
  *
  * @stack: first node in the list
- * @line_number: line  currently on
+ * @nline: line  currently on
  */
-void pop(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stack, unsigned int nline)
 {
 	stack_t *future;
+
 	if (!*stack)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pop an empty stack\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't pop an empty stack\n", nline);
 		exit(EXIT_FAILURE);
 	}
 
@@ -101,16 +102,16 @@ void pop(stack_t **stack, unsigned int line_number)
  * swap - swaps the top two elements of the stack
  *
  * @stack: first node in the list
- * @line_number: line  currently on
+ * @nline: line  currently on
  */
-void swap(stack_t **stack, unsigned int line_number)
+void swap(stack_t **stack, unsigned int nline)
 {
 	stack_t *future;
 
 	future = *stack;
 	if (!future || !future->next)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", nline);
 		exit(EXIT_FAILURE);
 	}
 

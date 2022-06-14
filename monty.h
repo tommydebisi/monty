@@ -38,36 +38,38 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 		char *opcode;
-		void (*f)(stack_t **stack, unsigned int line_number);
+		void (*f)(stack_t **stack, unsigned int nline);
 } instruction_t;
 
 /**
  * struct monty_s - global variable for monty interpreter
  * @stack: stack
- * @line_number: line number
- * @ac: tokenized value
+ * @nline: line number
+ * @arg: argument for the instruction
  * @fd: file descriptor
  */
 typedef struct monty_s
 {
 	stack_t *stack;
-	unsigned int line_number;
+	unsigned int nline;
 	char *arg;
 	FILE *fd;
 } monty_t;
 
 extern monty_t monty;
+monty_t monty;
+
 
 /* Operations */
-void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-void add(stack_t **stack, unsigned int line_number);
-void nop(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int nline);
+void pall(stack_t **stack, unsigned int nline);
+void pint(stack_t **stack, unsigned int nline);
+void pop(stack_t **stack, unsigned int nline);
+void swap(stack_t **stack, unsigned int nline);
+void add(stack_t **stack, unsigned int nline);
+void nop(stack_t **stack, unsigned int nline);
 
-void (*get_ops(char *opcode))(stack_t **stack, unsigned int line_number);
+void (*get_ops(char *opcode))(stack_t **stack, unsigned int nline);
 
 /* string functions */
 int _isdigit(char *str);

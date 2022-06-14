@@ -1,6 +1,12 @@
 #include "monty.h"
 
-void (*get_ops(char *opcode))(stack_t **stack, unsigned int line_number)
+/**
+ * get_ops - function pointer for opcode
+ *
+ * @opcode: string containing instruction
+ * Return: function for the opcode
+ */
+void (*get_ops(char *opcode))(stack_t **stack, unsigned int nline)
 {
 	unsigned int i;
 	instruction_t op_list[] = {

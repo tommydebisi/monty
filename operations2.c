@@ -4,16 +4,16 @@
  * add - adds the top two elements of the stack
  *
  * @stack: first node in the list
- * @line_number: line  currently on
+ * @nline: line  currently on
  */
-void add(stack_t **stack, unsigned int line_number)
+void add(stack_t **stack, unsigned int nline)
 {
 	stack_t *future;
 
 	future = *stack;
 	if (!future || !future->next)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't add, stack too short\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't add, stack too short\n", nline);
 		exit(EXIT_FAILURE);
 	}
 
@@ -28,10 +28,10 @@ void add(stack_t **stack, unsigned int line_number)
  * nop - doesn't do anything
  *
  * @stack: first node in the list
- * @line_number: line  currently on
+ * @nline: line  currently on
  */
-void nop(stack_t **stack, unsigned int line_number)
+void nop(stack_t **stack, unsigned int nline)
 {
 	(void)stack;
-	(void)line_number;
+	(void)nline;
 }
