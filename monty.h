@@ -41,16 +41,22 @@ typedef struct instruction_s
  * struct monty_s - global variable for monty interpreter
  * @stack: stack
  * @line_number: line number
+ * @ac: tokenized value
  * @fd: file descriptor
  */
 typedef struct monty_s
 {
-	stack_t *top;
+	stack_t *stack;
 	unsigned int line_number;
+	char **argv;
 	FILE *fd;
 } monty_t;
 
 extern monty_t monty;
 
-int readline(int fd);
+/* Operations */
+void push(stack_t **stack, unsigned int line_number);
+int _isdigit(char *str);
+
+int readline(fd);
 #endif /* _MONTY_H_ */
