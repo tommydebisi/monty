@@ -57,9 +57,6 @@ extern monty_t monty;
 /* Operations */
 void push(stack_t **stack, unsigned int line_number);
 
-/* Utilities */
-char** split(char *line);
-
 /* String */
 int _isdigit(char *str);
 
