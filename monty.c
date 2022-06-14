@@ -41,6 +41,22 @@ void init_monty(FILE *fd)
 }
 
 /**
+ * free_monty - initialize globla variable
+ */
+void free_monty()
+{
+	while (monty.stack && monty.stack->next)
+	{
+		monty.stack = monty.stack->next;
+		if (monty.stack)
+			free(monty.stack->prev);
+	}
+	if (monty.stack)
+		free(monty.stack);
+	fclose(monty.fd);
+}
+
+/**
  * main - the main operations take place
  *
  * @argc: number of argument
@@ -52,7 +68,7 @@ int main(int argc, char *argv[])
 	FILE *fd;
 	ssize_t flag;
 	size_t len = 0;
-	char *line, *opcode, *arg;
+	char *line, *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 	const char DELIMITER[4] = " \t\n";
 
@@ -60,25 +76,28 @@ int main(int argc, char *argv[])
 	init_monty(fd);
 	while ((flag = getline(&line, &len, fd) != -1))
 	{
+		monty.line_number++;
 		opcode = strtok(line, DELIMITER);
 		if (!opcode)
 		{
 			dprintf(STDERR_FILENO, "No opcode");
 			exit(EXIT_FAILURE);
 		}
-		arg = strtok(NULL, DELIMITER);
-		if (arg)
-			monty.arg = arg;
-	
-		f = get_ops(opcode);
-		if (!f)
+		if (opcode[0] != '#')
 		{
-			dprintf(STDERR_FILENO, "L%d: unknown instruction %s", monty.line_number, opcode);
-			exit(EXIT_FAILURE);
+			monty.arg = strtok(NULL, DELIMITER);
+		
+			f = get_ops(opcode);
+			if (!f)
+			{
+				dprintf(STDERR_FILENO, "L%d: unknown instruction %s", monty.line_number, opcode);
+				exit(EXIT_FAILURE);
+			}
+			f(&monty.stack, monty.line_number);
 		}
-		f(&monty.stack, monty.line_number);
-		monty.line_number++;
 	}
 
+	free(line);
+	free_monty();
 	return (EXIT_SUCCESS);
 }
