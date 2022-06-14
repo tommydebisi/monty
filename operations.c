@@ -12,12 +12,12 @@ void push(stack_t **stack, unsigned int line_number)
 	int value;
 
 
-	if (!monty.argv[1] || !_isdigit(monty.argv[1]))
+	if (!monty.arg || !_isdigit(monty.arg))
 	{
 		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	value = atoi(monty.argv[1]);
+	value = atoi(monty.arg);
 	
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
