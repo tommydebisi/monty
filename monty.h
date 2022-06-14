@@ -56,8 +56,13 @@ extern monty_t monty;
 
 /* Operations */
 void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
 
-/* String */
+/* string functions */
 int _isdigit(char *str);
 
+int readline(fd);
 #endif /* _MONTY_H_ */
