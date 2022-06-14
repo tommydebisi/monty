@@ -1,5 +1,7 @@
 #include "monty.h"
 
+monty_t monty;
+
 /**
  * main - the main operations take place
  * 

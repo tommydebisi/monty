@@ -37,5 +37,20 @@ typedef struct instruction_s
 		void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct monty_s - global variable for monty interpreter
+ * @stack: stack
+ * @line_number: line number
+ * @fd: file descriptor
+ */
+typedef struct monty_s
+{
+	stack_t stack;
+	unsigned int line_number;
+	FILE fd;
+} monty_t;
+
+extern monty_t monty;
+
 int readline(fd);
 #endif /* _MONTY_H_ */
