@@ -8,8 +8,7 @@
 -   Know what a **stack** is and to use it.
 -   Know the common use cases of **stacks and queues**.
 -   Know the common implementation of **stacks and queues**.
-<br>
-<br>
+
 ## Functions Implemented🌟
 |   **Opcodes** |   **Function**    |
 |   ----------  |   --------------  |
