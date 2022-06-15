@@ -8,7 +8,7 @@
  */
 void push(stack_t **stack, unsigned int nline)
 {
-	stack_t *new_node;
+	stack_t *new_node, *future = *stack;
 	int value;
 
 
@@ -23,9 +23,7 @@ void push(stack_t **stack, unsigned int nline)
 	if (!new_node)
 		exit(EXIT_FAILURE);
 
-	new_node->n = value;
-	new_node->next = NULL;
-	new_node->prev = NULL;
+	new_node->n = value, new_node->next = NULL, new_node->prev = NULL;
 
 	if (!(*stack))
 	{
@@ -33,9 +31,23 @@ void push(stack_t **stack, unsigned int nline)
 		return;
 	}
 
-	(*stack)->prev = new_node;
-	new_node->next = *stack;
-	*stack = new_node;
+	if (strcmp("stack", monty.operate) == 0)	/* for (LIFO) */
+	{
+		(*stack)->prev = new_node;
+		new_node->next = *stack;
+		*stack = new_node;
+		return;
+	}
+
+	if (!(*stack)->next)	/* for queue (FIFO) */
+		future->next = new_node, new_node->prev = future;
+	else
+	{
+		while (future->next)
+			future = future->next;
+
+		future->next = new_node, new_node->prev = future;
+	}
 }
 
 /**

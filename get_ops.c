@@ -25,6 +25,8 @@ void (*get_ops(char *opcode))(stack_t **stack, unsigned int nline)
 		{ "pstr", pstr },
 		{ "rotl", rotl },
 		{ "rotr", rotr },
+		{ "stack", o_stack },
+		{ "queue", o_queue },
 		{ NULL, NULL }
 	};
 
