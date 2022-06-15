@@ -68,7 +68,7 @@ void sub(stack_t **stack, unsigned int nline)
  * @stack: first node in the list
  * @nline: line  currently on
  */
-void div(stack_t **stack, unsigned int nline)
+void o_div(stack_t **stack, unsigned int nline)
 {
 	stack_t *future;
 

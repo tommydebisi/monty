@@ -7,7 +7,7 @@
  * @stack: first node in the list
  * @nline: line  currently on
  */
-void div(stack_t **stack, unsigned int nline)
+void mod(stack_t **stack, unsigned int nline)
 {
 	stack_t *future;
 
