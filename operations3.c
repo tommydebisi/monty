@@ -41,7 +41,7 @@ void mod(stack_t **stack, unsigned int nline)
  */
 void pchar(stack_t **stack, unsigned int nline)
 {
-	if (!*stack)
+	if (!stack || !*stack)
 	{
 		dprintf(STDERR_FILENO, "L%u: can't pchar, stack empty\n", nline);
 		free_monty();
@@ -54,7 +54,7 @@ void pchar(stack_t **stack, unsigned int nline)
 		free_monty();
 		exit(EXIT_FAILURE);
 	}
-	
+
 	printf("%c\n", (*stack)->n);
 }
 
