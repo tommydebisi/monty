@@ -1,6 +1,5 @@
 #include "monty.h"
 
-
 /**
  * check_args - check the arguments for monty
  * @argc: argument count
@@ -77,19 +76,16 @@ int main(int argc, char *argv[])
 	{
 		monty.nline++;
 		opcode = strtok(line, DELIMITER);
-		if (!opcode)
-		{
-			dprintf(STDERR_FILENO, "No opcode");
-			exit(EXIT_FAILURE);
-		}
-		if (opcode[0] != '#')
+		if (opcode && opcode[0] != '#')
 		{
 			monty.arg = strtok(NULL, DELIMITER);
 
 			f = get_ops(opcode);
 			if (!f)
 			{
-				dprintf(STDERR_FILENO, "L%d: unknown instruction %s", monty.nline, opcode);
+				dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", monty.nline, opcode);
+				free(line);
+				free_monty();
 				exit(EXIT_FAILURE);
 			}
 			f(&monty.stack, monty.nline);
