@@ -20,7 +20,7 @@ void mod(stack_t **stack, unsigned int nline)
 
 	if (future->n == 0)
 	{
-		dprintf(STDERR_FILENO, "L%u: division by zero", nline);
+		dprintf(STDERR_FILENO, "L%u: division by zero\n", nline);
 		exit(EXIT_FAILURE);
 	}
 

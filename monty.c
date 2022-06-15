@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 		opcode = strtok(line, DELIMITER);
 		if (!opcode)
 		{
-			dprintf(STDERR_FILENO, "No opcode");
+			dprintf(STDERR_FILENO, "No opcode\n");
 			exit(EXIT_FAILURE);
 		}
 		if (opcode[0] != '#')
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
 			f = get_ops(opcode);
 			if (!f)
 			{
-				dprintf(STDERR_FILENO, "L%d: unknown instruction %s", monty.nline, opcode);
+				dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", monty.nline, opcode);
 				exit(EXIT_FAILURE);
 			}
 			f(&monty.stack, monty.nline);
