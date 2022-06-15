@@ -36,6 +36,7 @@ void init_monty(FILE *fd)
 	monty.nline = 0;
 	monty.stack = NULL;
 	monty.arg = NULL;
+	monty.operate = "stack";
 }
 
 /**
@@ -83,7 +84,7 @@ int main(int argc, char *argv[])
 			f = get_ops(opcode);
 			if (!f)
 			{
-				dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", monty.nline, opcode);
+				dprintf(2, "L%d: unknown instruction %s\n", monty.nline, opcode);
 				free(line);
 				free_monty();
 				exit(EXIT_FAILURE);
