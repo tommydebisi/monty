@@ -19,14 +19,14 @@
 |   `swap`      |   swaps the top two elements of the **stack**.    |
 |   `add`       |   adds the top two elements of the **stack**. |
 |   `nop`       |   doesn't do anything |
-|   `sub`       |   subtracts the top element of the stack from the second top element of the stack.    |
-|   `div`       |   divides the second top element of the stack by the top element of the stack.    |
-|   `mul`       |    multiplies the second top element of the stack with the top element of the stack.  |
-|   `mod`       |   computes the rest of the division of the second top element of the stack by the top element of the stack.   |
-|   `pchar`     |    prints the char at the top of the stack    |
-|   `pstr`      |   prints the string starting at the top of the stack. |
-|   `rotl`      |   rotates the stack to the top.   |
-|   `rotr`      |   rotates the stack to the bottom.    |
+|   `sub`       |   subtracts the top element of the **stack** from the second top element of the **stack**.    |
+|   `div`       |   divides the second top element of the **stack** by the top element of the **stack**.    |
+|   `mul`       |    multiplies the second top element of the **stack** with the top element of the **stack**.  |
+|   `mod`       |   computes the rest of the division of the second top element of the **stack** by the top element of the **stack**.   |
+|   `pchar`     |    prints the char at the top of the **stack**    |
+|   `pstr`      |   prints the string starting at the top of the **stack**. |
+|   `rotl`      |   rotates the **stack** to the top.   |
+|   `rotr`      |   rotates the **stack** to the bottom.    |
 
 ***Other functions implemented:***
 -   Use of comments with `#` preceeding comment
