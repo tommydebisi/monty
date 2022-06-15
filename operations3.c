@@ -48,7 +48,7 @@ void pchar(stack_t **stack, unsigned int nline)
 		exit(EXIT_FAILURE);
 	}
 
-	if ((*stack)->n < 0 || (*stack)->n > 255)
+	if ((*stack)->n < 0 || (*stack)->n > 127)
 	{
 		dprintf(STDERR_FILENO, "L%u: can't pchar, value out of range\n", nline);
 		free_monty();
@@ -66,17 +66,11 @@ void pchar(stack_t **stack, unsigned int nline)
  */
 void pstr(stack_t **stack, unsigned int nline)
 {
-	int count;
 	stack_t *current;
-
 	(void) nline;
 
 	current = *stack;
-	for (count = 0; current && (current->n > 0 && current->n <= 255); count++)
-		current = current->next;
-	
-	current = *stack;
-	for (; count > 0; count--)
+	while (current && (current->n > 0 && current->n <= 127))
 	{
 		printf("%c", current->n);
 		current = current->next;
