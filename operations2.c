@@ -62,7 +62,7 @@ void sub(stack_t **stack, unsigned int nline)
 }
 
 /**
- * div - divides the second top element of the stack
+ * o_div - divides the second top element of the stack
  * by the top element of the stack.
  *
  * @stack: first node in the list
