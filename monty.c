@@ -36,6 +36,7 @@ void init_monty(FILE *fd)
 	monty.nline = 0;
 	monty.stack = NULL;
 	monty.arg = NULL;
+	monty.line = NULL;
 }
 
 /**
@@ -51,6 +52,8 @@ void free_monty(void)
 	}
 	if (monty.stack)
 		free(monty.stack);
+	if (monty.line)
+		free(monty.line);
 	fclose(monty.fd);
 }
 
@@ -66,16 +69,16 @@ int main(int argc, char *argv[])
 	FILE *fd;
 	ssize_t flag;
 	size_t len = 0;
-	char *line, *opcode;
+	char *opcode;
 	void (*f)(stack_t **stack, unsigned int nline);
 	const char DELIMITER[4] = " \t\n";
 
 	fd = check_args(argc, argv);
 	init_monty(fd);
-	while ((flag = getline(&line, &len, fd) != -1))
+	while ((flag = getline(&monty.line, &len, fd) != -1))
 	{
 		monty.nline++;
-		opcode = strtok(line, DELIMITER);
+		opcode = strtok(monty.line, DELIMITER);
 		if (opcode && opcode[0] != '#')
 		{
 			monty.arg = strtok(NULL, DELIMITER);
@@ -84,7 +87,6 @@ int main(int argc, char *argv[])
 			if (!f)
 			{
 				dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", monty.nline, opcode);
-				free(line);
 				free_monty();
 				exit(EXIT_FAILURE);
 			}
@@ -92,7 +94,6 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	free(line);
 	free_monty();
 	return (EXIT_SUCCESS);
 }

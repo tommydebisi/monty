@@ -15,12 +15,14 @@ void mod(stack_t **stack, unsigned int nline)
 	if (!future || !future->next)
 	{
 		dprintf(STDERR_FILENO, "L%u: can't mod, stack too short\n", nline);
+		free_monty();
 		exit(EXIT_FAILURE);
 	}
 
 	if (future->n == 0)
 	{
 		dprintf(STDERR_FILENO, "L%u: division by zero\n", nline);
+		free_monty();
 		exit(EXIT_FAILURE);
 	}
 
@@ -42,12 +44,14 @@ void pchar(stack_t **stack, unsigned int nline)
 	if (!*stack)
 	{
 		dprintf(STDERR_FILENO, "L%u: can't pchar, stack empty\n", nline);
+		free_monty();
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*stack)->n < 0 || (*stack)->n > 255)
 	{
 		dprintf(STDERR_FILENO, "L%u: can't pchar, value out of range\n", nline);
+		free_monty();
 		exit(EXIT_FAILURE);
 	}
 	
@@ -93,6 +97,9 @@ void rotl(stack_t **stack, unsigned int nline)
 
 	(void) nline;
 
+	if (!*stack)
+		return;
+
 	current = head = *stack;
 	while (current && current->next)
 		current = current->next;
@@ -114,6 +121,9 @@ void rotr(stack_t **stack, unsigned int nline)
 	stack_t *current, *head;
 
 	(void) nline;
+
+	if (!*stack)
+		return;
 
 	current = head = *stack;
 	while (current && current->next)

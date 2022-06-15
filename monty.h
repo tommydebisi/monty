@@ -54,10 +54,13 @@ typedef struct monty_s
 	unsigned int nline;
 	char *arg;
 	FILE *fd;
+	char *line;
 } monty_t;
 
 extern monty_t monty;
 monty_t monty;
+
+void free_monty(void);
 
 
 /* Operations */
