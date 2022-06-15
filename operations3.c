@@ -50,7 +50,7 @@ void pchar(stack_t **stack, unsigned int nline)
 		dprintf(STDERR_FILENO, "L%u: can't pchar, value out of range\n", nline);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	printf("%c\n", (*stack)->n);
 }
 
@@ -70,7 +70,7 @@ void pstr(stack_t **stack, unsigned int nline)
 	current = *stack;
 	for (count = 0; current && (current->n > 0 && current->n <= 255); count++)
 		current = current->next;
-	
+
 	current = *stack;
 	for (; count > 0; count--)
 	{
