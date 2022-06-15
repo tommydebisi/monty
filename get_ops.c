@@ -21,6 +21,10 @@ void (*get_ops(char *opcode))(stack_t **stack, unsigned int nline)
 		{ "div", o_div },
 		{ "mul", mul },
 		{ "mod", mod },
+		{ "pchar", pchar },
+		{ "pstr", pstr },
+		{ "rotl", rotl },
+		{ "rotr", rotr },
 		{ NULL, NULL }
 	};
 

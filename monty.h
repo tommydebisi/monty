@@ -72,6 +72,10 @@ void sub(stack_t **stack, unsigned int nline);
 void o_div(stack_t **stack, unsigned int nline);
 void mul(stack_t **stack, unsigned int nline);
 void mod(stack_t **stack, unsigned int nline);
+void pchar(stack_t **stack, unsigned int nline);
+void pstr(stack_t **stack, unsigned int nline);
+void rotl(stack_t **stack, unsigned int nline);
+void rotr(stack_t **stack, unsigned int nline);
 
 void (*get_ops(char *opcode))(stack_t **stack, unsigned int nline);
 
