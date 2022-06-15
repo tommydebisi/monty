@@ -68,6 +68,10 @@ void pop(stack_t **stack, unsigned int nline);
 void swap(stack_t **stack, unsigned int nline);
 void add(stack_t **stack, unsigned int nline);
 void nop(stack_t **stack, unsigned int nline);
+void sub(stack_t **stack, unsigned int nline);
+void div(stack_t **stack, unsigned int nline);
+void mul(stack_t **stack, unsigned int nline);
+void mod(stack_t **stack, unsigned int nline);
 
 void (*get_ops(char *opcode))(stack_t **stack, unsigned int nline);
 
