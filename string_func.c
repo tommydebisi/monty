@@ -6,9 +6,12 @@
  */
 int _isdigit(char *str)
 {
-	int i;
+	int i = 0;
 
-	for (i = 0; str[i] != '\0'; i++)
+	if (str[i] == '-')
+		i++;
+
+	for (; str[i] != '\0'; i++)
 	{
 		if ((str[i] < '0' || str[i] > '9'))
 			return (0);
