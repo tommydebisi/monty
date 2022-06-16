@@ -40,7 +40,7 @@ We use a loop to compute 48 = 6 * 8.
 
 ++++ ++++  c2 = 8 and this will be our loop counter again
 [
-    >> +++ +++  Add 6 to Cell #4
-    << -        Subtract 1 from c2
+>> +++ +++  Add 6 to Cell #4
+<< -        Subtract 1 from c2
 ]
 >> .
